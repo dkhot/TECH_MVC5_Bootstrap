@@ -1,0 +1,35 @@
+﻿
+<h2>Index</h2>
+@using (var f = Html.Bootstrap().Begin(new Form().LabelWidthMd(2).LabelWidthSm(3).Type(FormType.Horizontal)))
+{
+    using (var p = Html.Bootstrap().Begin(new Panel()))
+    {
+        @p.Heading("My cool header")
+
+        using (p.BeginBody())
+        {
+            @f.FormGroup().TextBox("Email");
+            @f.FormGroup().TextBox("Password")
+            @f.FormGroup().CheckBox("Remeber")
+            @f.FormGroup().CustomControls(Html.Bootstrap().SubmitButton())
+        }
+        using (var t = p.BeginTable(new Table()))
+        {
+            using (var r = t.BeginRow())
+            {
+                @r.Cell("cell 1")
+                @r.Cell("cell 2")
+            }
+        }
+        using (var l = p.BeginListGroup())
+        {
+            @l.Item("item1")
+            @l.Item("item2")
+        }
+
+        @p.Footer("My cool footer")
+    }
+
+
+}
+
