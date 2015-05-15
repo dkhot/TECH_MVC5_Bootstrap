@@ -13,5 +13,28 @@ namespace HelloWorld.Controllers
         {
             return View();
         }
+
+        public ActionResult AjaxHandler(jQueryDataTableParamModel param)
+        {
+            var allEmployees = new List<EmployeeViewModel>();
+
+            for (int i = 0; i <= 10; i++)
+            {
+                EmployeeViewModel emp = new EmployeeViewModel();
+                emp.Name = "My Name " + i;
+                emp.Department = "My Dept " + i;
+                emp.ContactNumber = 10000 + i;
+
+            }
+
+            var result = allEmployees.ToArray<EmployeeViewModel>();
+            return Json(new
+            {
+                sEcho = param.sEcho,
+                iTotalRecords = allEmployees.Count(),
+                iTotalDisplayRecords = allEmployees.Count(),
+                aaData = result
+            }, JsonRequestBehavior.AllowGet);
+        }
     }
 }
