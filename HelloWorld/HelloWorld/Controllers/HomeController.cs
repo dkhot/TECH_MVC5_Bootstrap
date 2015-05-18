@@ -11,6 +11,19 @@ namespace HelloWorld.Controllers
         // GET: Home
         public ActionResult Index()
         {
+            var allEmployees = new List<EmployeeViewModel>();
+
+            for (int i = 0; i <= 10; i++)
+            {
+                EmployeeViewModel emp = new EmployeeViewModel();
+                emp.Name = "My Name " + i;
+                emp.Department = "My Dept " + i;
+                emp.ContactNumber = 10000 + i;
+                allEmployees.Add(emp);
+
+            }
+
+            ViewBag.EmplListDropDown = new SelectList(allEmployees, "ContactNumber", "Name");
             return View();
         }
 
@@ -24,6 +37,7 @@ namespace HelloWorld.Controllers
                 emp.Name = "My Name " + i;
                 emp.Department = "My Dept " + i;
                 emp.ContactNumber = 10000 + i;
+                allEmployees.Add(emp);
 
             }
 
